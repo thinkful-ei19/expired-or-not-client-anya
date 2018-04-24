@@ -3,12 +3,25 @@ import {ADD_ITEM} from '../actions/item';
 import {FETCH_BOARD_SUCCESS} from '../actions/board';
 
 const initialState = {
-    lists: [],
-    loading: false,
-    error: null
-}
+    lists: [{
+        date: '4/24/18',
+        cards: [{
+            text: 'milk'
+        }, {
+            text: 'egg'
+        }]
+    }, {
+        date: '4/26/18',
+        cards: [{
+            text: 'blueberry'
+        }, {
+            text: 'rasberry'
+        }]
+    }]
+};
 
 export const groceryReducer = (state=initialState, action) => {
+    console.log('state', state, action);
     if (action.type === ADD_LIST) {
         return Object.assign({}, state, {
             lists: [...state.lists]
@@ -31,7 +44,7 @@ export const groceryReducer = (state=initialState, action) => {
         });
     }
     else if (action.type === FETCH_BOARD_SUCCESS) {
-        return action.board;
+        return Object.assign({}, state)
     }
     return state;
 };

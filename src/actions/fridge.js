@@ -7,7 +7,7 @@ export const fetchFridgeSuccess = fridge => ({
 });
 
 export const fetchFridge = () => dispatch => {
-    fetch(`${API_BASE_URL}/board`)
+    fetch(`${API_BASE_URL}/board/fridge`)
         .then(res => {
             if (!res.ok) {
                 return Promise.reject(res.statusText);

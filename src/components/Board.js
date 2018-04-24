@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Lists from './Lists';
 import Fridge from './Fridge';
-import AddList from './AddList';
+//import AddList from './AddList';
 import {addList} from '../actions/lists';
+import AddList from './AddList';
 import {fetchBoard} from '../actions/board';
 
 
@@ -18,7 +19,7 @@ class Board extends Component {
   }
 
   render() {
-
+    console.log('this.props board', this.props);
     const lists = this.props.lists.map((list, index) => (
       <li className="list-wrapper" key={index}>
           <Lists index={index} {...list} />
@@ -30,20 +31,20 @@ class Board extends Component {
         <header className="header">
           <h1 className="title">Expired Or Not?</h1>
         </header>
-        <body>
-          <main>
-            <Fridge items={['milk', 'butter']}/>
-            <ul className="lists">
-                    {lists}
-                    <li className="add-list-wrapper">
-                        <addList
-                            type="list"
-                            onAdd={name => this.addList(name)}
+        <section>
+            <Fridge items={['milk', 'butter', 'bread']}/>
+            <ul >
+            <Lists items={['milk', 'butter', 'bread']}/>
+            <br />
+            <li className="add-list-wrapper">
+                        <AddList
+                            type="card"
+                            onAdd={text => this.addList(text)}
                         />
-                    </li>
+            </li>
+                    
             </ul>
-          </main>
-        </body>
+        </section>
       </div>
     );
   }

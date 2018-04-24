@@ -7,7 +7,7 @@ export const fetchBoardSuccess = board => ({
 });
 
 export const fetchBoard = () => dispatch => {
-    fetch(`${API_BASE_URL}/board`)
+    fetch(`${API_BASE_URL}/api/board`)
         .then(res => {
             if (!res.ok) {
                 return Promise.reject(res.statusText);

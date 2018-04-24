@@ -4,10 +4,10 @@ import React from 'react';
 export default class AddList extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             editing: false
         }
-
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -15,7 +15,7 @@ export default class AddList extends React.Component {
         event.preventDefault();
         const text = this.textInput.value.trim();
         if (text && this.props.onAdd) {
-            this.props.onAdd(this.textInput.value);
+            this.props.onAdd(text);
         }
         this.textInput.value = '';
     }

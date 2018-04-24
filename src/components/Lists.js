@@ -8,6 +8,7 @@ export default class List extends React.Component {
     }
 
     render() {
+        console.log('this.props', this.props);
         const items = this.props.items.map((item, index, expTime) => (
             <li key={index}>
                 <Item {...item} />
@@ -15,11 +16,9 @@ export default class List extends React.Component {
         ))
 
         return(
-            <div>
-                <header>
-                    <h1 placeholder="enter date">this.props.expTime</h1>
-                </header>
-                <ul className="Item">
+            <div>          
+                <h1 placeholder="enter date">List</h1>
+                <ul className="list">
                     {items}
                 </ul>
                 <button>Edit List</button>
@@ -29,4 +28,5 @@ export default class List extends React.Component {
         );
     }
 }
+
 

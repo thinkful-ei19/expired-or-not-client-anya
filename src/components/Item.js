@@ -9,6 +9,6 @@ export default function Item(props) {
 };
 
 Item.defaultProps = {
-    name: 'milk',
-    expTime: '1 week'
+            name: 'milk',
+            expTime: '1 week'
 };
