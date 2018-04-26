@@ -1,14 +1,42 @@
 import React from 'react';
 
-export default function Item(props) {
-    return (
-        <div className="item">
-            {props.name} - {props.expTime}
-        </div>
-    );
-};
+class Item extends React.Component {
+    constructor() {
+        super();
+    
+        this.handleSubmit = this.handleSubmit.bind(this);
 
-Item.defaultProps = {
-            name: 'milk',
-            expTime: '1 week'
-};
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+    
+        const { item, removeListItem } = this.props;
+        const listItemId = item.id;
+    
+        removeListItem(listItemId);
+      }
+
+    render() {
+
+        const {item} = this .props;
+
+        return (
+            <div className="panel">
+              <div className="panel-heading">
+                {item.quantity} x {item.name}
+              </div>
+      
+              {item.datePurchased}
+      
+              <div className="panel-footer">
+                <form className="form-inline" onSubmit={this.handleSubmit}>
+                  <button type="submit">Remove</button>
+                </form>
+              </div>
+            </div>
+          );
+    }
+}
+
+export default Item;
