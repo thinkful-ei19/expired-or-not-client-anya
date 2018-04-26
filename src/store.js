@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
 
-import {groceryReducer} from './reducers';
+import listItemsReducer from './reducers';
 
-export default createStore(groceryReducer, applyMiddleware(thunk));
+export default createStore(listItemsReducer, applyMiddleware(thunk));

@@ -1,50 +1,37 @@
-import {ADD_LIST, REMOVE_LIST, UPDATE_LIST} from '../actions/lists';
-import {ADD_ITEM} from '../actions/item';
-import {FETCH_BOARD_SUCCESS} from '../actions/board';
+import {ADD_LIST_ITEM, REMOVE_LIST_ITEM, REMOVE_ALL_LIST_ITEMS} from '../actions/index';
 
 const initialState = {
-    lists: [{
-        date: '4/24/18',
-        cards: [{
-            text: 'milk'
-        }, {
-            text: 'egg'
-        }]
-    }, {
-        date: '4/26/18',
-        cards: [{
-            text: 'blueberry'
-        }, {
-            text: 'rasberry'
-        }]
-    }]
+    items: {}
 };
 
-export const groceryReducer = (state=initialState, action) => {
-    console.log('state', state, action);
-    if (action.type === ADD_LIST) {
-        return Object.assign({}, state, {
-            lists: [...state.lists]
-        });
-    }
-    else if (action.type === ADD_ITEM) {
-        let lists = state.lists.map((list, index) => {
-            if (index !== action.listIndex) {
-                return list;
-            }
-            return Object.assign({}, list, {
-                cards: [...list.cards, {
-                    text: action.text
-                }]
-            });
-        });
 
-        return Object.assign({}, state, {
-            lists
-        });
+export default function listItemsReducer (state=initialState, action) {
+  
+    const removeItemFromList = (items, itemId) => {
+        const newListItems = {...items};
+        delete newListItems[itemId];
+        return newListItems
     }
-    else if (action.type === FETCH_BOARD_SUCCESS) {
-        return Object.assign({}, state)
+
+    if (action.type === ADD_LIST_ITEM) {
+        return {
+            items: {
+                ...state.items,
+                [action.item.id]: action.item
+            }
+        }
+    }
+
+    if (action.type === REMOVE_LIST_ITEM) {
+        return {
+            items: removeItemFromList(state.items, action.itemId)
+        }
+    }
+
+    if (action.type === REMOVE_ALL_LIST_ITEMS) {
+        return {
+            items: {}
+        }
     }
     return state;
-};
+}

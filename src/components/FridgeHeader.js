@@ -1,10 +1,6 @@
 import React from 'react';
 
 class FridgeHeader extends React.Component {
-    constructor() {
-        super();
-
-    }
 
     render() {
         const { totalNumberOfListItems } = this.props;
