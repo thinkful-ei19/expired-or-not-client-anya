@@ -12,14 +12,14 @@ class Item extends React.Component {
         event.preventDefault();
     
         const { item, removeListItem } = this.props;
-        const listItemId = item.id;
+        const itemId = item.id;
     
-        removeListItem(listItemId);
+        removeListItem(itemId);
       }
 
     render() {
-
-        const {item} = this .props;
+        console.log('this.props',this.props);
+        const {item} = this.props;
 
         return (
             <div className="panel">

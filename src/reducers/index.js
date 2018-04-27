@@ -4,14 +4,13 @@ const initialState = {
     items: {}
 };
 
+const removeItemFromList = (items, itemId) => {
+    const newListItems = {...items};
+    delete newListItems[itemId];
+    return newListItems
+}
 
-export default function listItemsReducer (state=initialState, action) {
-  
-    const removeItemFromList = (items, itemId) => {
-        const newListItems = {...items};
-        delete newListItems[itemId];
-        return newListItems
-    }
+export default function listItems (state=initialState, action) {  
 
     if (action.type === ADD_LIST_ITEM) {
         return {

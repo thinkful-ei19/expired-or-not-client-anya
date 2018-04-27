@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import Fridge from './Fridge';
 import AddItem from './AddItem';
 import './Main.css';

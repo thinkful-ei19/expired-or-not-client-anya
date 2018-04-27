@@ -1,5 +1,8 @@
 import React from 'react';
+//import uuid from 'node-uuid';
 import './AddItem.css';
+
+const uuidv3 = require('uuid/v3');
 
 class AddItem extends React.Component {
     constructor() {
@@ -13,9 +16,43 @@ class AddItem extends React.Component {
           };
     }
 
+    handleInputChange(e) {
+        const inputName = e.target.name;
+        const inputValue = e.target.value;
+
+        this.setState(currentState => {
+            return {
+                ...currentState,
+                [inputName]: inputValue
+            };
+        });
+    }
+
+    handleSubmitEvent(e) {
+        e.preventDefault();
+
+        const {addItem} = this.props;
+        const {
+            itemName, 
+            datePurchased,
+            quanity
+        } = this.state;
+
+        const listItem = {
+            id: uuidv3(),
+            date: new Date(),
+            name: itemName.trim(),
+            datePurchased: datePurchased.trim(),
+            quanity: parseInt(quanity, 10)
+        };
+
+        addItem(listItem);
+
+    }
+
     render() {
         return(
-            <form className="column">
+            <form onSubmit={this.handleSubmitEvent} className="column">
                 <h3 className="page-header">Add New Item</h3>
 
                 <div className="form-group">
@@ -30,7 +67,8 @@ class AddItem extends React.Component {
                     name="itemName"
                     placeholder="Enter name"
                     required
-                    /*value={itemName}*/ />
+                    value={this.state.itemName}
+                    onChange={this.handleInputChange} />
                 </div>
 
                 <div className="form-group">
@@ -45,7 +83,8 @@ class AddItem extends React.Component {
                     name="datePurchased"
                     placeholder="Enter date purchased"
                     required
-                    /*value={datePurchased}*/ />
+                    value={this.state.datePurchased}
+                    onChange={this.handleInputChange} />
                 </div>
 
                 <div className="form-group">
@@ -64,7 +103,8 @@ class AddItem extends React.Component {
                         id="quanity"
                         name="quanity"
                         required
-                        /*value={quanity}*/ />
+                        value={this.state.quanity}
+                        onChange={this.handleInputChange} />
                     </div>
                 </div>
                 </div>
