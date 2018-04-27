@@ -12,9 +12,9 @@ class Item extends React.Component {
         event.preventDefault();
     
         const { item, removeListItem } = this.props;
-        const itemId = item.id;
+        //const itemId = item.id;
     
-        removeListItem(itemId);
+        removeListItem(item);
       }
 
     render() {

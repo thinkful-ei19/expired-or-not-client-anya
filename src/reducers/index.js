@@ -23,7 +23,7 @@ export default function listItems (state=initialState, action) {
 
     if (action.type === REMOVE_LIST_ITEM) {
         return {
-            items: removeItemFromList(state.items, action.itemId)
+            items: removeItemFromList(state.items, action.item.id)
         }
     }
 

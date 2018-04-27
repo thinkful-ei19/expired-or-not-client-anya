@@ -7,9 +7,9 @@ export const addListItem = item => ({
 });
 
 export const REMOVE_LIST_ITEM = 'REMOVE_LIST_ITEM';
-export const removeListItem = itemId => ({
+export const removeListItem = item => ({
   type: REMOVE_LIST_ITEM,
-  itemId
+  item
 });
 
 export const REMOVE_ALL_LIST_ITEMS = 'REMOVE_ALL_LIST_ITEMS';

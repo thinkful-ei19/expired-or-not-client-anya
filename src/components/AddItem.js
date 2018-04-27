@@ -1,8 +1,8 @@
 import React from 'react';
-//import uuid from 'node-uuid';
+import uuid from 'uuid';
 import './AddItem.css';
-
-const uuidv3 = require('uuid/v3');
+import {connect} from 'react-redux';
+import {addListItem} from '../actions';
 
 class AddItem extends React.Component {
     constructor() {
@@ -14,6 +14,9 @@ class AddItem extends React.Component {
             //expTime: '',
             quantity: 0
           };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
     }
 
     handleInputChange(e) {
@@ -35,18 +38,19 @@ class AddItem extends React.Component {
         const {
             itemName, 
             datePurchased,
-            quanity
+            quantity
         } = this.state;
 
         const listItem = {
-            id: uuidv3(),
             date: new Date(),
             name: itemName.trim(),
             datePurchased: datePurchased.trim(),
-            quanity: parseInt(quanity, 10)
+            quantity: parseInt(quantity, 10),
+            id: uuid()
         };
 
-        addItem(listItem);
+        //actions are objects, action creator is a function!!!
+        this.props.dispatch(addListItem(listItem));
 
     }
 
@@ -88,22 +92,22 @@ class AddItem extends React.Component {
                 </div>
 
                 <div className="form-group">
-                <label htmlFor="quanity">
+                <label htmlFor="quantity">
                     Quantity 
                     <span id="styleRequired">*</span>
                 </label>
                 <div className="row">
-                    <div className="quanity">
+                    <div className="quantity">
                     <input
                         type="number"
                         min="1"
                         max="9999"
                         step="1"
                         className="form-control"
-                        id="quanity"
-                        name="quanity"
+                        id="quantity"
+                        name="quantity"
                         required
-                        value={this.state.quanity}
+                        value={this.state.quantity}
                         onChange={this.handleInputChange} />
                     </div>
                 </div>
@@ -118,4 +122,9 @@ class AddItem extends React.Component {
     }
 }
 
-export default AddItem;
+const mapDispatchToProps = (dispatch) => ({
+    addItem: (listItem) => dispatch(addListItem(listItem.name)),
+    dispatch, //to call it inline
+})
+
+export default connect(null, mapDispatchToProps)(AddItem);
