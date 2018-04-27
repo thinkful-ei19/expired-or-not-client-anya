@@ -77,7 +77,7 @@ class AddItem extends React.Component {
 
                 <div className="form-group">
                 <label htmlFor="datePurchased">
-                    Description
+                    Date purchased
                     <span id="styleRequired">*</span>
                 </label>
                 <input 
